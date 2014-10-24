@@ -1,0 +1,7 @@
+#List of jdbc drivers required by Worklight Server
+#You can get from internet or your db2 server java folder.
+#To know the versions access this link: http://www-01.ibm.com/support/docview.wss?uid=swg21363866
+#Put in this folder the following files:
+db2jcc.jar
+db2jcc_license_cu.jar
+db2jcc4.jar

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<agent-input clean="true" temporary="true">
+
+<server>
+	<repository location="/tmp/WAS_Liberty"/>
+	<repository location="/tmp/java7"/>
+</server>
+
+<install modify="false">
+	<offering id="com.ibm.websphere.liberty.v85" profile="WebSphere Liberty V8.5" features="liberty,embeddablecontainer" installFixes="none" /> 
+	<offering id="com.ibm.websphere.liberty.IBMJAVA.v70" profile="WebSphere Liberty V8.5" features="com.ibm.sdk.7" installFixes="none" /> 
+</install>
+
+<profile id="WebSphere Liberty V8.5" installLocation="/opt/IBM/WebSphere/Liberty">
+	<data key="eclipseLocation" value="/opt/IBM/WebSphere/Liberty" /> 
+	<data key="cic.selector.arch" value="x86_64" /> 
+</profile>
+
+</agent-input>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Licensed Materials - Property of IBM
+    5725-I43 (C) Copyright IBM Corp. 2011, 2014. All Rights Reserved.
+    US Government Users Restricted Rights - Use, duplication or
+    disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+
+-->
+
+<!-- Worklight Server: sample installation response file
+     for a configuration with
+       - a WebSphere Application Server Liberty profile and
+       - a DB2 database management system. -->
+
+<agent-input>
+
+  <server>
+    <!-- The repositories where Installation Manager can find offerings.
+         URLs and absolute file names are accepted; they should point to
+         directories that contain a repository.config or diskTag.inf file.
+         To install a major release, you need one repository.
+         To install a fix pack release, you usually need two repositories.
+         To install an interim fix, you usually need two or three repositories.
+         For more details, see
+         http://pic.dhe.ibm.com/infocenter/wrklight/v6r0m0/index.jsp?topic=%2Fcom.ibm.worklight.upgrade.doc%2Fdevenv%2Ft_upgrade_srvr_prod_prep_repositories.html
+         http://pic.dhe.ibm.com/infocenter/wrklight/v6r1m0/index.jsp?topic=%2Fcom.ibm.worklight.upgrade.doc%2Fdevenv%2Ft_upgrade_srvr_prod_prep_repositories.html
+         http://pic.dhe.ibm.com/infocenter/install/v1r6/index.jsp?topic=%2Fcom.ibm.silentinstall12.doc%2Ftopics%2Fr_repository_types.html
+    -->
+    <repository location='/tmp/WorklightServer/Worklight/disk1/'/>
+  </server>
+
+  <!-- The declaration of the Installation Manager package group, a.k.a. profile.
+       Make sure that the installLocation, if it exists, is empty. -->
+  <profile id='IBM Worklight' installLocation='/opt/IBM/Worklight'>
+
+    <!-- The settings 'eclipseLocation', 'user.import.profile',
+         'cic.selector.os', 'cic.selector.ws', 'cic.selector.arch',
+         'cic.selector.nl' don't need to be specified. -->
+
+    <!-- Application server choice. Possible values are was, tomcat. -->
+    <data key='user.appserver.selection2' value='was'/>
+
+    <!-- WebSphere Application Server Liberty profile installation directory. -->
+    <data key='user.appserver.was.installdir' value='/opt/IBM/WebSphere/Liberty'/>
+    <!-- Name of WAS profile. 'Liberty' indicates the Liberty profile. -->
+    <data key='user.appserver.was.profile' value='Liberty'/>
+    <!-- Name of WAS Liberty server into which to install the web applications. -->
+    <data key='user.appserver.was85liberty.serverInstance_' value='server1'/>
+
+    <!-- Database choice. Possible values are derby, db2, mysql, oracle. -->
+    <data key='user.database.selection2' value='db2'/>
+    <data key='user.database.preinstalled' value='true'/>
+
+    <!-- Settings for the database. -->
+    <!-- The host name or IP address of the DB2 database server. -->
+    <data key='user.database.db2.host' value='db2.company.com'/>
+    <!-- The port where the DB2 database server listens for JDBC connections.
+         Usually 50000. -->
+    <data key='user.database.db2.port' value='50000'/>
+    <!-- The absolute file name of db2jcc4.jar. The accompanying license file
+         must be located in the same directory. -->
+    <data key='user.database.db2.driver' value='/vagrant/db2_jdbc/db2jcc4.jar'/>
+    <!-- The user name used to access the DB2 database for Application Center. -->
+    <data key='user.database.db2.appcenter.username' value='wluser'/>
+    <!-- The password used to access the DB2 database for Application Center,
+         optionally obfuscated in a specific way. -->
+    <data key='user.database.db2.appcenter.password' value='wluser'/>
+    <!-- The name of the DB2 database for Application Center. -->
+    <data key='user.database.db2.appcenter.dbname' value='APPCNTR'/>
+    <!-- The name of the schema for Application Center in the DB2 database.
+         An empty value denotes the default schema for the specified user,
+         namely, the authorization ID of that user. -->
+    <data key='user.database.db2.appcenter.schema' value=''/>
+
+    <!-- For a multi-user installation: The name of the unique operating system
+         user that shall be allowed to start and stop the application server.
+         For a group of users or for a single-user installation, leave this
+         empty. -->
+    <data key='user.writable.data.user' value=''/>
+    <!-- For a multi-user installation: The name of the unique operating system
+         group that shall be allowed to start and stop the application server.
+         For a single-user installation, leave this empty. -->
+    <data key='user.writable.data.group2' value=''/>
+
+  </profile>
+
+  <!-- Specify what Installation Manager should install. -->
+  <install modify='false'>
+    <!-- You can omit the 'version' and 'features' attributes. -->
+    <offering id='com.ibm.imp' version='6.2.0.20140613_0756' profile='IBM Worklight' features='main.feature' installFixes='none'/>
+  </install>
+
+  <!-- The Installation Manager preferences don't need to be specified. -->
+
+</agent-input>
