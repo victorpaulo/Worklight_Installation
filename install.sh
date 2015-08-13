@@ -51,7 +51,7 @@ echo "CMD> [unzip WAS_Liberty_Core_V8.5.5.zip -d /tmp/WAS_Liberty]"
 unzip /vagrant/binary/WAS_Liberty_Core_V8.5.5.zip -d /tmp/WAS_Liberty
 
 echo "Unzipping Java 7 binaries"
-ls /vagrant/binary/SDK_JAVA_TE_V7.0_*.zip | while read line
+for line in /vagrant/binary/SDK_JAVA_TE_V7.0_*.zip
 do
 	echo "CMD> [unzip $line -d /tmp/java7]"
 	unzip $line -d /tmp/java7 > /dev/null
